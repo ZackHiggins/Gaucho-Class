@@ -1,5 +1,5 @@
 import React from "react";
-import DepartmentSearch from "./Search/DepartmentSearch"
+import Search from "./Search/Search"
 
 class App extends React.Component {
   constructor() {
@@ -10,7 +10,7 @@ class App extends React.Component {
     return (
       <div>
         <h1>Hello Gaucho Class!</h1>
-        <DepartmentSearch />
+        <Search />
       </div>
     );
   }
