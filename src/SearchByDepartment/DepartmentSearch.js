@@ -169,7 +169,7 @@ class DepartmentSearch extends React.Component {
     hideDeptTable() {
         setTimeout(function () {
             document.getElementById("deptSearchTable").style.display = "none";
-        }, 100);
+        }, 25);
 
     }
 

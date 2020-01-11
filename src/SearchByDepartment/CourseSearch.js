@@ -4,10 +4,12 @@ class CourseSearch extends React.Component {
     constructor(props) {
         super(props);
         this.state = {}
+
+        this.selectCourse = this.selectCourse.bind(this);
     }
 
     selectCourse(course) {
-
+        this.props.addCourse(course);
     }
 
     CourseList = ({ courses }) => {

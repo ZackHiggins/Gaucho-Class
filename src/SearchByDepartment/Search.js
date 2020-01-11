@@ -3,8 +3,8 @@ import CourseSearch from "./CourseSearch"
 import DepartmentSearch from "./DepartmentSearch";
 
 class Search extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             courses: [],
             currentDept: ""
@@ -53,7 +53,7 @@ class Search extends React.Component {
         return (
             <div>
                 <DepartmentSearch updateDept={this.updateDept} />
-                <CourseSearch currentDept={this.state.currentDept} courses={this.state.courses} />
+                <CourseSearch courses={this.state.courses} addCourse={this.props.addCourse} />
             </div>
         );
     }
