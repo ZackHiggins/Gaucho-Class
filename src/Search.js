@@ -15,7 +15,7 @@ class Search extends React.Component {
             pageNumber: 1,
             // pageSize: 10,
             includeClassSections: true,
-            title: searchTerm
+            deptCode: searchTerm
         };
 
         url += new URLSearchParams(params).toString();
