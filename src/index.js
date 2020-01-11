@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
+import LandingPage from "./LoadingScreen/LandingPage";
 
 // https://github.com/facebook/create-react-app
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(<LandingPage />, document.getElementById("root"));
