@@ -1,4 +1,5 @@
 import React from "react";
+import DepartmentSearch from "./Search/DepartmentSearch"
 
 class App extends React.Component {
   constructor() {
@@ -6,7 +7,12 @@ class App extends React.Component {
     this.state = {};
   }
   render() {
-    return <h1>Hello Gaucho Class!</h1>;
+    return (
+      <div>
+        <h1>Hello Gaucho Class!</h1>
+        <DepartmentSearch />
+      </div>
+    );
   }
 }
 
