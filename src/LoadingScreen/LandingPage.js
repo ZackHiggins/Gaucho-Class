@@ -1,4 +1,5 @@
 import React from "react";
+import Loading from "./Loading";
 
 export let Courses;
 
@@ -19,7 +20,7 @@ class LandingPage extends React.Component {
     var params = {
       quarter: 20201,
       pageNumber: 1,
-      pageSize: 100,
+      pageSize: 900,
       includeClassSections: true
     };
 
@@ -50,31 +51,11 @@ class LandingPage extends React.Component {
       });
   }
 
-  createCourseArray() {
-    let len = typeof this.state.courses;
-    for (let i = 0; i < len; i++) {
-      let courseObj = this.state.courses[i];
-      let result = {
-        courseId: courseObj.courseId,
-        title: courseObj.title,
-        description: courseObj.description,
-        college: courseObj.college,
-        objLevelCode: courseObj.objLevelCode,
-        subjectArea: courseObj.subjectArea,
-        generalEducation: courseObj.generalEducation,
-        classSections: courseObj.classSections
-      };
-      Courses.push(result);
-    }
-  }
-
   render() {
     Courses = this.state.courses;
     console.log("Courses", Courses);
     return (
-      <div>
-        {this.state.isLoading ? <p> Loading ... </p> : <p>Done Loading</p>}
-      </div>
+      <div>{this.state.isLoading ? <Loading /> : <p>Done Loading</p>}</div>
     );
   }
 }
