@@ -16,8 +16,11 @@ class App extends React.Component {
   }
 
   addCourse(course) {
-    this.setState({
-      selectedCourses: this.state.selectedCourses.concat(course)
+    console.log("hello!", course);
+    this.setState(prevState => {
+      return {
+        selectedCourses: prevState.selectedCourses.concat(course)
+      };
     });
     console.log("Courses: ", this.state.selectedCourses);
   }
@@ -38,7 +41,9 @@ class App extends React.Component {
           courses={this.state.selectedCourses}
           addCourseTime={this.addCourseTime}
         />
-        {/* <div style={{position: "fixed", top: 400}}><LoadData /></div> */}
+        <div style={{ position: "fixed", top: 200 }}>
+          <LoadData />
+        </div>
       </div>
     );
   }
