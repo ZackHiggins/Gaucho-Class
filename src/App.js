@@ -3,7 +3,8 @@ import ReactDOM from "react-dom";
 import Search from "./SearchByDepartment/Search";
 import LoadData from "./LoadingScreen/LoadData";
 import Sidebar from "./Sidebar/Sidebar";
-import Calendar from "./Calendar/Calendar"
+import Calendar from "./Calendar/Calendar";
+import "./style.css";
 
 class App extends React.Component {
   constructor() {
@@ -20,7 +21,7 @@ class App extends React.Component {
   addCourse(course) {
     console.log("course to add!: ", course);
     this.setState({
-        selectedCourses: this.state.selectedCourses.concat(course)
+      selectedCourses: this.state.selectedCourses.concat(course)
     });
     console.log("CoursesArray:", this.state.selectedCourses);
   }
@@ -41,11 +42,21 @@ class App extends React.Component {
           courses={this.state.selectedCourses}
           addCourseTime={this.addCourseTime}
         />
-        <div style={{position: "fixed", right: 300, top: 100, zIndex: -1}}>
-          <Calendar courses={this.state.selectedCourses} sectionIds={this.state.courseTimes} />
+        <div style={{ position: "fixed", right: 300, top: 100, zIndex: -1 }}>
+          <Calendar
+            courses={this.state.selectedCourses}
+            sectionIds={this.state.courseTimes}
+          />
         </div>
         <div style={{ position: "absolute", top: 10, right: 10 }}>
           <button
+            className="btn"
+            style={{
+              position: "absolute",
+              top: 9,
+              right: 5,
+              width: 250
+            }}
             onClick={() =>
               ReactDOM.render(<LoadData />, document.getElementById("root"))
             }
