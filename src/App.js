@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import Search from "./SearchByDepartment/Search";
 import LoadData from "./LoadingScreen/LoadData";
 import Sidebar from "./Sidebar/Sidebar";
+import Calendar from "./Calendar/Calendar"
 
 class App extends React.Component {
   constructor() {
@@ -43,6 +44,9 @@ class App extends React.Component {
           courses={this.state.selectedCourses}
           addCourseTime={this.addCourseTime}
         />
+        <div style={{position: "fixed", right: 300, top: 100, zIndex: -1}}>
+          <Calendar courses={this.state.selectedCourses} sectionIds={this.state.courseTimes} />
+        </div>
         <div style={{ position: "absolute", top: 10, right: 10 }}>
           <button
             onClick={() =>
