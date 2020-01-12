@@ -1,5 +1,4 @@
 import React from "react";
-import Courses from "../LoadingScreen/LoadData";
 import CollegesNavBar from "./Dropdowns/CollegesNavbar";
 import AreasNavbar from "./Dropdowns/AreasNavbar";
 import DisplayCourses from "./CourseDisplay/DisplayCourses";
@@ -10,9 +9,12 @@ let dictOfAreas = {
   CRST: ["A", "B", "D", "E", "F", "G", "E", "QNT", "ETH", "EUR", "NWC", "WRT"]
 };
 
+export let Area;
+export let College;
+
 class Search extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       isLoading: true,
       college: "",
@@ -25,6 +27,7 @@ class Search extends React.Component {
   }
 
   collegeSelected(college) {
+    College = college;
     let collegeAreas = dictOfAreas[college];
     this.setState({
       college: college,
@@ -36,6 +39,7 @@ class Search extends React.Component {
   }
 
   areaSelected(area) {
+    Area = area;
     this.setState(prevState => {
       return {
         college: prevState.college,
@@ -45,8 +49,6 @@ class Search extends React.Component {
         courses: []
       };
     });
-    //queries list of classes from specific area
-    //queryClasses(this.state.college, area);
   }
 
   render() {

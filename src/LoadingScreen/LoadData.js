@@ -61,7 +61,7 @@ class LandingPage extends React.Component {
           <Loading />
         ) : (
           <p>
-            <Search />
+            <Search allCourses={Courses} />
           </p>
         )}
       </div>

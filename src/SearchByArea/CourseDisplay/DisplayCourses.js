@@ -6,6 +6,9 @@ import TableCell from "@material-ui/core/TableCell";
 import Paper from "@material-ui/core/Paper";
 import { AutoSizer, Column, Table } from "react-virtualized";
 import styles from "./styles";
+import { Courses } from "../../LoadingScreen/LoadData";
+import { Area } from "../Search";
+import { College } from "../Search";
 
 class DisplayCourses extends React.PureComponent {
   static defaultProps = {
@@ -126,28 +129,97 @@ DisplayCourses.propTypes = {
 
 const VirtualizedTable = withStyles(styles)(DisplayCourses);
 
-// ---
+// -----
 
-const sample = [
-  ["Classes", 159, 6.0, 24, 4.0],
-  ["Ice cream sandwich", 237, 9.0, 37, 4.3],
-  ["Eclair", 262, 16.0, 24, 6.0],
-  ["Cupcake", 305, 3.7, 67, 4.3],
-  ["Gingerbread", 356, 16.0, 49, 3.9]
-];
+const sample = [];
 
-function createData(id, dessert, calories, fat, carbs, protein) {
-  return { id, dessert, calories, fat, carbs, protein };
+function createData(id, courseId, instructor, location, day, time) {
+  // rateMyProfessor(instructor)
+  return { id, courseId, instructor, location, day, time };
 }
 
 const rows = [];
 
-for (let i = 0; i < 200; i += 1) {
-  const randomSelection = sample[Math.floor(Math.random() * sample.length)];
-  rows.push(createData(i, ...randomSelection));
+function getInstructor(obj) {
+  let instructor = "CONT";
+  if (obj.classSections[0].instructors[0]) {
+    instructor = obj.classSections[0].instructors[0].instructor;
+  }
+  return instructor;
+}
+
+function getDayAndTime(obj) {
+  let dayAndTime = ["CONT", "CONT"];
+  if (obj.classSections[0].timeLocations[0]) {
+    const temp = obj.classSections[0].timeLocations[0];
+    dayAndTime[0] = temp.days; // represents days
+    dayAndTime[1] = temp.beginTime + " to " + temp.endTime; //represents endTime
+  }
+  return dayAndTime;
+}
+
+function getLocation(obj) {
+  let location = "CONT";
+  const temp = obj.classSections[0].timeLocations[0];
+  if (temp.building && temp.room) {
+    location = temp.building + " " + temp.room; // represents days
+  }
+  return location;
+}
+
+function filter(generalEducation, areaSelected, collegeSelected) {
+  for (let i = 0; i < generalEducation.length; i++) {
+    const item = generalEducation[i];
+    console.log("HERE", item);
+    if (
+      item.geCode.trim() === areaSelected &&
+      item.geCollege.trim() === collegeSelected
+    ) {
+      return true;
+    }
+  }
+  return false;
 }
 
 export default function ReactVirtualizedTable() {
+  let AllCourses = Courses;
+  let collegeSelected = College;
+  let areaSelected = Area;
+  console.log("AreaSelected", areaSelected);
+  console.log("collegeSelected", collegeSelected);
+  for (let i = 0; i < AllCourses.length; i += 1) {
+    const obj = AllCourses[i];
+
+    if (!filter(obj.generalEducation, collegeSelected, areaSelected)) {
+      continue;
+    }
+
+    let instructor = getInstructor(obj);
+    if (instructor === "CONT") {
+      continue;
+    }
+
+    let dayAndtime = getDayAndTime(obj);
+    if (dayAndtime[0] === "CONT" || dayAndtime[1] === "CONT") {
+      continue;
+    }
+
+    let location = getLocation(obj);
+    if (location === "CONT") {
+      continue;
+    }
+
+    rows.push(
+      createData(
+        obj.title,
+        obj.courseId,
+        instructor,
+        location,
+        dayAndtime[0],
+        dayAndtime[1]
+      )
+    );
+  }
   return (
     <Paper style={{ height: 400, width: "100%" }}>
       <VirtualizedTable
@@ -157,30 +229,36 @@ export default function ReactVirtualizedTable() {
           {
             width: 200,
             label: "Class",
-            dataKey: "dessert"
+            dataKey: "courseId"
           },
           {
             width: 120,
-            label: "Calories\u00A0(g)",
-            dataKey: "calories",
+            label: "Instructor\u00A0",
+            dataKey: "instructor",
             numeric: true
           },
           {
             width: 120,
-            label: "Fat\u00A0(g)",
-            dataKey: "fat",
+            label: "Location",
+            dataKey: "location",
             numeric: true
           },
           {
             width: 120,
-            label: "Carbs\u00A0(g)",
-            dataKey: "carbs",
+            label: "Day\u00A0",
+            dataKey: "day",
             numeric: true
           },
           {
             width: 120,
-            label: "Protein\u00A0(g)",
-            dataKey: "protein",
+            label: "Time\u00A0",
+            dataKey: "time",
+            numeric: true
+          },
+          {
+            width: 120,
+            label: "Rate My professor",
+            dataKey: "ratemyprofessor",
             numeric: true
           }
         ]}
