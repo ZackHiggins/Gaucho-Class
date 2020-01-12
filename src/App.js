@@ -2,6 +2,7 @@ import React from "react";
 import Search from "./SearchByDepartment/Search";
 import LoadData from "./LoadingScreen/LoadData";
 import Sidebar from "./Sidebar/Sidebar";
+import Calendar from "./Calendar/Calendar";
 
 class App extends React.Component {
   constructor() {
@@ -36,6 +37,10 @@ class App extends React.Component {
         <Search addCourse={this.addCourse} />
         <Sidebar courses={this.state.selectedCourses} addCourseTime={this.addCourseTime} />
         {/* <div style={{position: "fixed", top: 400}}><LoadData /></div> */}
+        <div style={{position: "fixed", top: 100, right: 300, bottom: 0, left: 0, overflowY: "scroll", zIndex: -1
+      }}>
+          <Calendar courses={this.state.selectedCourses} sectionIds={this.state.courseTimes} />
+        </div>
       </div>
     );
   }
