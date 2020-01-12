@@ -19,11 +19,8 @@ class App extends React.Component {
 
   addCourse(course) {
     console.log("course to add!: ", course);
-    this.setState(prevState => {
-      return {
-        selectedCourses: prevState.selectedCourses.push(course),
-        courseTimes: {}
-      };
+    this.setState({
+        selectedCourses: this.state.selectedCourses.concat(course)
     });
     console.log("CoursesArray:", this.state.selectedCourses);
   }
@@ -54,7 +51,7 @@ class App extends React.Component {
             }
           >
             {" "}
-            Ge finder
+            GE Finder
           </button>
         </div>
       </div>
