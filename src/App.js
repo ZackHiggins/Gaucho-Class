@@ -19,7 +19,6 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <h1>Hello Gaucho Class!</h1>
         <Search addCourse={this.addCourse} />
       </div>
     );

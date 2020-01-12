@@ -18,7 +18,7 @@ class DepartmentSearch extends React.Component {
                 { name: "Biomolecular Science and Engineering     ", code: "BMSE " },
                 { name: "Black Studies                            ", code: "BL ST" },
                 { name: "Botany                                   ", code: "BOT  " },
-                { name: "Chemical &amp; Nuclear Engineering       ", code: "NUC E" },
+                { name: "Chemical & Nuclear Engineering           ", code: "NUC E" },
                 { name: "Chemical Engineering                     ", code: "CH E " },
                 { name: "Chemistry and Biochemistry               ", code: "CHEM " },
                 { name: "Chicano Studies                          ", code: "CH ST" },
@@ -41,7 +41,7 @@ class DepartmentSearch extends React.Component {
                 { name: "Eastern Languages                        ", code: "AFRIC" },
                 { name: "Eastern Languages                        ", code: "AMH  " },
                 { name: "Eastern Languages                        ", code: "YORUB" },
-                { name: "Ecology, Evolution &amp; Marine Biology  ", code: "EEMB " },
+                { name: "Ecology, Evolution & Marine Biology      ", code: "EEMB " },
                 { name: "Economics                                ", code: "ECON " },
                 { name: "Education                                ", code: "ED   " },
                 { name: "Educational Arts and Crafts              ", code: "EAC  " },
@@ -50,12 +50,12 @@ class DepartmentSearch extends React.Component {
                 { name: "Engineering Sciences                     ", code: "ENGR " },
                 { name: "English                                  ", code: "ENGL " },
                 { name: "Environmental Data Science               ", code: "EDS  " },
-                { name: "Environmental Science &amp; Management   ", code: "ESM  " },
+                { name: "Environmental Science & Management       ", code: "ESM  " },
                 { name: "Environmental Studies                    ", code: "ENV S" },
-                { name: "Ergonomics &amp; Physical Education      ", code: "ERG  " },
-                { name: "Ergonomics &amp; Physical Education      ", code: "ERGPE" },
-                { name: "Ergonomics &amp; Physical Education      ", code: "HLTH " },
-                { name: "Exercise &amp; Sport Studies             ", code: "ESS  " },
+                { name: "Ergonomics & Physical Education          ", code: "ERG  " },
+                { name: "Ergonomics & Physical Education          ", code: "HLTH " },
+                { name: "Ergonomics & Physical Education          ", code: "ERGPE" },
+                { name: "Exercise & Sport Studies                 ", code: "ESS  " },
                 { name: "Exercise Sport                           ", code: "ES   " },
                 { name: "Feminist Studies                         ", code: "FEMST" },
                 { name: "Film and Media Studies                   ", code: "FAMST" },
@@ -95,7 +95,7 @@ class DepartmentSearch extends React.Component {
                 { name: "Medieval Studies                         ", code: "ME ST" },
                 { name: "Middle East Studies                      ", code: "MES  " },
                 { name: "Military Science                         ", code: "MS   " },
-                { name: "Molecular, Cellular &amp; Develop. Biolog", code: "MCDB " },
+                { name: "Molecular, Cellular & Develop. Biology   ", code: "MCDB " },
                 { name: "Music                                    ", code: "MUS  " },
                 { name: "Music Performance Laboratories           ", code: "MUS A" },
                 { name: "Natural Sciences                         ", code: "NAT S" },
@@ -117,9 +117,9 @@ class DepartmentSearch extends React.Component {
                 { name: "Slavic                                   ", code: "SLAV " },
                 { name: "Sociology                                ", code: "SOC  " },
                 { name: "Spanish                                  ", code: "SPAN " },
-                { name: "Speech &amp; Hearing Sciences            ", code: "SHS  " },
-                { name: "Speech &amp; Hearing Sciences            ", code: "SPCH " },
-                { name: "Statistics &amp; Applied Probability     ", code: "PSTAT" },
+                { name: "Speech & Hearing Sciences                ", code: "SHS  " },
+                { name: "Speech & Hearing Sciences                ", code: "SPCH " },
+                { name: "Statistics & Applied Probability         ", code: "PSTAT" },
                 { name: "Subject A                                ", code: "SUB A" },
                 { name: "Swahili                                  ", code: "SWAH " },
                 { name: "Swedish                                  ", code: "SWED " },
@@ -137,6 +137,7 @@ class DepartmentSearch extends React.Component {
         this.selectDepartment = this.selectDepartment.bind(this);
         this.showDeptTable = this.showDeptTable.bind(this);
         this.hideDeptTable = this.hideDeptTable.bind(this);
+        this.updateText = this.updateText.bind(this);
     }
 
     filterDepartments() {
@@ -160,6 +161,7 @@ class DepartmentSearch extends React.Component {
 
         console.log("Selected Department: " + dept);
         this.props.updateDept(dept);
+        this.updateText(dept);
     }
 
     showDeptTable() {
@@ -170,7 +172,10 @@ class DepartmentSearch extends React.Component {
         setTimeout(function () {
             document.getElementById("deptSearchTable").style.display = "none";
         }, 25);
+    }
 
+    updateText(text) {
+        document.getElementById("deptSearchInput").value = text;
     }
 
     DepartmentList = ({ depts }) => {
@@ -178,8 +183,8 @@ class DepartmentSearch extends React.Component {
             <>
                 {depts.map(dept => (
                     <tr key={dept.code} onClick={() => this.selectDepartment(dept.code)}>
-                        <td>{dept.name}</td>
                         <td>{dept.code}</td>
+                        <td>{dept.name}</td>
                     </tr>
                 ))}
             </>
@@ -188,16 +193,18 @@ class DepartmentSearch extends React.Component {
 
     render() {
         return (
-            <div>
-                <input type="text" id="deptSearchInput" onKeyUp={this.filterDepartments} onFocus={this.showDeptTable} onBlur={this.hideDeptTable} placeholder="Search for departments..." />
+            <div style={{ position: "fixed", top: 20, left: 50, right: 50, backgroundColor: "white", zIndex: 100 }}>
+                <input style={{ width: "100%" }} type="text" id="deptSearchInput" onKeyUp={this.filterDepartments} onFocus={this.showDeptTable} onBlur={this.hideDeptTable} placeholder="Search for departments (e.g., CMPSC or Computer Science)" />
                 <table id="deptSearchTable" style={{
+                    height: 500,
+                    overflowY: "scroll",
                     display: "none",
-                    height: "300px",
-                    overflowY: "scroll"
+                    backgroundColor: "white",
+                    width: "100%"
                 }}>
                     <tr className="header">
-                        <th style={{ width: "80%" }}>Department Name</th>
                         <th style={{ width: "20%" }}>Code</th>
+                        <th style={{ width: "80%" }}>Name</th>
                     </tr>
                     <this.DepartmentList depts={this.state.departments} />
                 </table>
