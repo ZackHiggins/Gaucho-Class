@@ -3,7 +3,8 @@ import ReactDOM from "react-dom";
 import Search from "./SearchByDepartment/Search";
 import LoadData from "./LoadingScreen/LoadData";
 import Sidebar from "./Sidebar/Sidebar";
-import Calendar from "./Calendar/Calendar"
+import Calendar from "./Calendar/Calendar";
+import "./style.css";
 
 class App extends React.Component {
   constructor() {
@@ -46,6 +47,13 @@ class App extends React.Component {
         </div>
         <div style={{ position: "absolute", top: 10, right: 10 }}>
           <button
+            className="btn"
+            style={{
+              position: "absolute",
+              top: 9,
+              right: 5,
+              width: 250
+            }}
             onClick={() =>
               ReactDOM.render(<LoadData />, document.getElementById("root"))
             }

@@ -1,0 +1,16 @@
+.btn {
+  background-color: lightcoral;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  font-size: 25px;
+  margin: 4px 2px;
+  opacity: 0.7;
+  transition: 0.3s;
+  width: 100px;
+}
+
+.btn:hover {
+  opacity: 1;
+}
