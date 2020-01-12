@@ -42,11 +42,8 @@ class App extends React.Component {
           courses={this.state.selectedCourses}
           addCourseTime={this.addCourseTime}
         />
-        <div style={{ position: "fixed", right: 300, top: 100, zIndex: -1 }}>
-          <Calendar
-            courses={this.state.selectedCourses}
-            sectionIds={this.state.courseTimes}
-          />
+        <div style={{ position: "fixed", right: 300, top: 100, bottom: 0, left: 0, zIndex: -1, overflowY: "scroll" }}>
+          <Calendar courses={this.state.selectedCourses} sectionIds={this.state.courseTimes} />
         </div>
         <div style={{ position: "absolute", top: 10, right: 10 }}>
           <button
@@ -65,7 +62,7 @@ class App extends React.Component {
             GE Finder
           </button>
         </div>
-      </div>
+      </div >
     );
   }
 }
