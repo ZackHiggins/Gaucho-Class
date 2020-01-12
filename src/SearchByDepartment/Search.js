@@ -51,7 +51,7 @@ class Search extends React.Component {
 
     render() {
         return (
-            <div style={{ backgroundColor: "#333333", position: "fixed", top: 0, left: 0, right: 0, height: 100}}>
+            <div style={{ backgroundColor: "#272727", position: "fixed", top: 0, left: 0, right: 0, height: 100}}>
                 <DepartmentSearch updateDept={this.updateDept} />
                 <CourseSearch courses={this.state.courses} addCourse={this.props.addCourse} currentDept={this.state.currentDept} />
             </div>

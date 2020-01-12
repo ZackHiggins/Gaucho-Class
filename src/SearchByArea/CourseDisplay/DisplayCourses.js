@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import clsx from "clsx";
 import { withStyles } from "@material-ui/core/styles";
-import TableCell from "@material-ui/core/TableCell";
+import TableCell from "@material-i/core/TableCell";
 import Paper from "@material-ui/core/Paper";
 import { AutoSizer, Column, Table } from "react-virtualized";
 import styles from "./styles";
@@ -170,7 +170,6 @@ function getLocation(obj) {
 function filter(generalEducation, areaSelected, collegeSelected) {
   for (let i = 0; i < generalEducation.length; i++) {
     const item = generalEducation[i];
-    console.log("HERE", item);
     if (
       item.geCode.trim() === areaSelected &&
       item.geCollege.trim() === collegeSelected
@@ -193,6 +192,8 @@ export default function ReactVirtualizedTable() {
     if (!filter(obj.generalEducation, collegeSelected, areaSelected)) {
       continue;
     }
+
+    console.log(obj);
 
     let instructor = getInstructor(obj);
     if (instructor === "CONT") {
