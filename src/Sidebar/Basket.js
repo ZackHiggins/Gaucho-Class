@@ -23,7 +23,7 @@ class Basket extends React.Component {
                             </span>
 
                             : <ul style={{ margin: 5 }} onClick={() => this.props.addCourseTime(course.courseId, section.section)}>
-                                <li>{section.timeLocations[0].days + " " + section.timeLocations[0].beginTime + "-" + section.timeLocations[0].endTime}</li>
+                                {section.timeLocations[0] ? <li>{section.timeLocations[0].days + " " + section.timeLocations[0].beginTime + "-" + section.timeLocations[0].endTime}</li> : console.log("")}
                             </ul>
                         }
                     </div>

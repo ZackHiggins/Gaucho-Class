@@ -6,16 +6,32 @@ function CreateCalendar(props) {
   var data = [];
 
   props.courses.map((course) => {
-    var startTime, endTime, days;
+    var startTime, endTime, days, startTimeLec, endTimeLec, daysLec;
     for (var i = 0; i < course.classSections.length; ++i) {
       var selectedTime = props.sectionIds[course.courseId];
-      if (course.classSections[i].section === selectedTime) {
+      if (course.classSections[i].section == selectedTime) {
         startTime = course.classSections[i].timeLocations[0].beginTime;
         endTime = course.classSections[i].timeLocations[0].endTime;
         days = course.classSections[i].timeLocations[0].days;
+        console.log(startTime, endTime, days);
       }
+
+      if (selectedTime && course.classSections[i].section == selectedTime.substr(0, selectedTime.length - 2) + "00") {
+        startTimeLec = course.classSections[i].timeLocations[0].beginTime;
+        endTimeLec = course.classSections[i].timeLocations[0].endTime;
+        daysLec = course.classSections[i].timeLocations[0].days;
+        console.log(startTime, endTime, days);
+      }
+      
     }
-    var daysArray = days.split("");
+
+    var daysArray = [];
+    if (days)
+      daysArray = days.split("");
+
+    var daysLecArray = [];
+    if (daysLec)
+      daysLecArray = daysLec.split("");
 
     var daysToDates = {
       "M": "2020-01-06 ",
@@ -25,14 +41,21 @@ function CreateCalendar(props) {
       "F": "2020-01-10 ",
     }
 
-    var date;
-
-    for (let d in daysArray) {
-      if (d === "") continue;
-      date = daysToDates[d];
-
+    var date = "", dateLec = "";
+    var comp = "MTWRF";
+    for (let d of daysArray) {
+      if (comp.includes(d)) {
+        date = daysToDates[d];
+        data.push({startDate: date + startTime, endDate: date + endTime, title: course.courseId});
+      }
     }
-    data.push({startDate: date + startTime, endDate: date + endTime, title: course.title})
+    for (let d of daysLecArray) {
+      if (comp.includes(d)) {
+        dateLec = daysToDates[d];
+        data.push({startDate: dateLec + startTimeLec, endDate: dateLec + endTimeLec, title: course.courseId})
+      }
+    }
+    
   });
 
   // data.push({startDate: '2020-01-06 12:00', endDate: '2020-01-06 13:30', title: 'CMPSC 48'})

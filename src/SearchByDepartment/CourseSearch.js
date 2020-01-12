@@ -33,7 +33,8 @@ class CourseSearch extends React.Component {
 
     hideCourseTable() {
         setTimeout(function () {
-            document.getElementById("courseSearchTable").style.display = "none";
+            if (document.getElementById("courseSearchTable"))
+                document.getElementById("courseSearchTable").style.display = "none";
         }, 25);
     }
 
