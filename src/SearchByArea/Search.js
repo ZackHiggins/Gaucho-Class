@@ -76,7 +76,7 @@ class Search extends React.Component {
         {this.state.area === "" ? (
           <p>Courses needed to be added</p>
         ) : (
-          <DisplayCourses />
+          <DisplayCourses addCourse={this.props.addCourse} />
         )}
       </div>
     );

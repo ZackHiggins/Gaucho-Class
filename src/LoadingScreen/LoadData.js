@@ -1,17 +1,19 @@
 import React from "react";
 import Loading from "./Loading";
 import Search from "../SearchByArea/Search";
+import getProfData from "../rateMyProf/ratemyprof";
 
 export let Courses;
 
-class LandingPage extends React.Component {
-  constructor() {
-    super();
+class LoadData extends React.Component {
+  constructor(props) {
+    super(props);
     this.state = {
       isLoading: true,
       foundError: false,
       courses: {}
     };
+    console.log("PROPS: ", props);
   }
 
   componentDidMount() {
@@ -21,7 +23,7 @@ class LandingPage extends React.Component {
     var params = {
       quarter: 20201,
       pageNumber: 1,
-      pageSize: 1000,
+      pageSize: 100,
       includeClassSections: true
     };
 
@@ -53,15 +55,15 @@ class LandingPage extends React.Component {
   }
 
   render() {
+    this.props.addCourse({});
     Courses = this.state.courses;
-    console.log("Courses", Courses);
     return (
       <div>
         {this.state.isLoading ? (
           <Loading />
         ) : (
           <p>
-            <Search allCourses={Courses} />
+            <Search allCourses={Courses} addCourse={this.props.addCourse} />
           </p>
         )}
       </div>
@@ -69,4 +71,4 @@ class LandingPage extends React.Component {
   }
 }
 
-export default LandingPage;
+export default LoadData;

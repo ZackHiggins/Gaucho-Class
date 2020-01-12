@@ -35,7 +35,10 @@ class App extends React.Component {
     return (
       <div>
         <Search addCourse={this.addCourse} />
-        <Sidebar courses={this.state.selectedCourses} addCourseTime={this.addCourseTime} />
+        <Sidebar
+          courses={this.state.selectedCourses}
+          addCourseTime={this.addCourseTime}
+        />
         {/* <div style={{position: "fixed", top: 400}}><LoadData /></div> */}
         <div style={{position: "fixed", top: 100, right: 300, bottom: 0, left: 0, overflowY: "scroll", zIndex: -1
       }}>
@@ -47,3 +50,4 @@ class App extends React.Component {
 }
 
 export default App;
+export const { addCourse } = new App();
