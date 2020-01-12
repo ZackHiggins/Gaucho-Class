@@ -9,7 +9,7 @@ function Loading() {
     <div className="background">
       <h1 className="center">Loading ...</h1>
       <div className="loader">
-        <img src={mapache} style={{ width: 50, height: 50 }} />
+        <img src={mapache} alt="no img" style={{ width: 50, height: 50 }} />
       </div>{" "}
     </div>
   );
