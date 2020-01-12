@@ -17,7 +17,7 @@ class Stats extends React.Component {
 
     render() {
         return (
-            <div style={{ color: "white", zIndex: 0, textAlign: "center", width: "100%", position: "block", face: "bold" }}>
+            <div style={{ color: "white", zIndex: 0, textAlign: "center", width: "100%", position: "block"}}>
                 <div style={{ float: "left", margin: 23, marginBottom: 5, fontSize: 32 }}>
                     <div id="courseCount" style={{ textAlign: "center" }}>{this.props.courses.length}</div>
                     <div style={{ textAlign: "center", fontSize: 12 }}>COURSES</div>
