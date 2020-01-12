@@ -20,7 +20,7 @@ class App extends React.Component {
   addCourse(course) {
     console.log("course to add!: ", course);
     this.setState({
-        selectedCourses: this.state.selectedCourses.concat(course)
+      selectedCourses: this.state.selectedCourses.concat(course)
     });
     console.log("CoursesArray:", this.state.selectedCourses);
   }
@@ -41,7 +41,7 @@ class App extends React.Component {
           courses={this.state.selectedCourses}
           addCourseTime={this.addCourseTime}
         />
-        <div style={{position: "fixed", right: 300, top: 100, zIndex: -1}}>
+        <div style={{ position: "fixed", right: 300, top: 100, bottom: 0, left: 0, zIndex: -1, overflowY: "scroll" }}>
           <Calendar courses={this.state.selectedCourses} sectionIds={this.state.courseTimes} />
         </div>
         <div style={{ position: "absolute", top: 10, right: 10 }}>
@@ -54,7 +54,7 @@ class App extends React.Component {
             GE Finder
           </button>
         </div>
-      </div>
+      </div >
     );
   }
 }
