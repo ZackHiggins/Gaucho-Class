@@ -5,4 +5,4 @@ import LoadData from "./LoadingScreen/LoadData";
 
 // https://github.com/facebook/create-react-app
 
-ReactDOM.render(<LoadData />, document.getElementById("root"));
+ReactDOM.render(<App />, document.getElementById("root"));
