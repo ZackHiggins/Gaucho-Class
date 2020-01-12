@@ -1,6 +1,7 @@
 import React from "react";
 import Search from "./SearchByDepartment/Search";
 import LoadData from "./LoadingScreen/LoadData";
+import Sidebar from "./Sidebar/Sidebar";
 
 
 class App extends React.Component {
@@ -24,8 +25,9 @@ class App extends React.Component {
     return (
       <div>
         <Search addCourse={this.addCourse} />
-        <div style={{position: "fixed", top: 400}}><LoadData /></div>
-        
+        <Sidebar courses={this.state.selectedCourses} />
+        {/* <div style={{position: "fixed", top: 400}}><LoadData /></div> */}
+
       </div>
     );
   }

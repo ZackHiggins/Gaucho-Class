@@ -72,7 +72,7 @@ class CourseSearch extends React.Component {
             : "↑ Please select a department ↑");
 
         return (
-            <div style={{ position: "fixed", top: 58, left: 50, right: 50, zIndex: 999 }}>
+            <div style={{ position: "fixed", top: 58, left: 25, right: 325, zIndex: 999 }}>
                 <input style={{ width: "100%" }} type="text" id="courseSearchInput" onKeyUp={this.filterCourses} onFocus={this.showCourseTable} onBlur={this.hideCourseTable} placeholder={placeholderText} />
                 <table id="courseSearchTable" style={{
                     display: "none",
