@@ -252,36 +252,36 @@ export default function ReactVirtualizedTable() {
         rowGetter={({ index }) => rows[index]}
         columns={[
           {
-            width: 200,
+            width: 300,
             label: "Class",
             dataKey: "courseId"
           },
           {
-            width: 120,
+            width: 300,
             label: "Instructor\u00A0",
             dataKey: "instructor",
             numeric: true
           },
           {
-            width: 120,
+            width: 300,
             label: "Location",
             dataKey: "location",
             numeric: true
           },
           {
-            width: 120,
+            width: 300,
             label: "Day\u00A0",
             dataKey: "day",
             numeric: true
           },
           {
-            width: 120,
+            width: 300,
             label: "Time\u00A0",
             dataKey: "time",
             numeric: true
           },
           {
-            width: 120,
+            width: 300,
             label: "Rate My professor",
             dataKey: "ratemyprofessor",
             numeric: true

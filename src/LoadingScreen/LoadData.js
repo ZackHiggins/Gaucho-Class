@@ -54,6 +54,7 @@ class LoadData extends React.Component {
 
   render() {
     Courses = this.state.courses;
+    console.log(Courses);
     return (
       <div>
         {this.state.isLoading ? (
