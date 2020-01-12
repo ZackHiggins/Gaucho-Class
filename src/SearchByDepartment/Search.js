@@ -51,10 +51,15 @@ class Search extends React.Component {
 
     render() {
         return (
-            <div style={{ backgroundColor: "#272727", position: "fixed", top: 0, left: 0, right: 0, height: 100}}>
-                <DepartmentSearch updateDept={this.updateDept} />
-                <CourseSearch courses={this.state.courses} addCourse={this.props.addCourse} currentDept={this.state.currentDept} />
-            </div>
+            <>
+                <div style={{ position: "fixed", top: 25, left: 25, zIndex: 1000, color: "white" }}>
+                    SBHacks 2020 <br /> NotGaucho.Space
+                </div>
+                <div style={{ backgroundColor: "#272727", position: "fixed", top: 0, left: 0, right: 0, height: 100 }}>
+                    <DepartmentSearch updateDept={this.updateDept} />
+                    <CourseSearch courses={this.state.courses} addCourse={this.props.addCourse} currentDept={this.state.currentDept} />
+                </div>
+            </>
         );
     }
 }

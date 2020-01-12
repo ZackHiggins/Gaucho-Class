@@ -193,7 +193,7 @@ class DepartmentSearch extends React.Component {
 
     render() {
         return (
-            <div style={{ position: "fixed", top: 20, left: 25, right: 325, backgroundColor: "white", zIndex: 100000 }}>
+            <div style={{ position: "fixed", top: 20, left: 200, right: 325, backgroundColor: "white", zIndex: 100000 }}>
                 <input style={{ width: "100%" }} type="text" id="deptSearchInput" onKeyUp={this.filterDepartments} onFocus={this.showDeptTable} onBlur={this.hideDeptTable} placeholder="Search for departments (e.g., CMPSC or Computer Science)" />
                 <table id="deptSearchTable" style={{
                     height: 500,
