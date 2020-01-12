@@ -16,7 +16,6 @@ class App extends React.Component {
   }
 
   addCourse(course) {
-    console.log("hello!", course);
     this.setState(prevState => {
       return {
         selectedCourses: prevState.selectedCourses.concat(course)

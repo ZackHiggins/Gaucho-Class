@@ -1,7 +1,6 @@
 import React from "react";
 import Loading from "./Loading";
 import Search from "../SearchByArea/Search";
-import getProfData from "../rateMyProf/ratemyprof";
 
 export let Courses;
 

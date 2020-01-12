@@ -56,22 +56,12 @@ class Search extends React.Component {
       <div>
         <CollegesNavBar collegeSelected={this.collegeSelected} />
         {this.college === "" ? (
-          <p>Select a college</p>
+          <p>Select a college!</p>
         ) : (
           <AreasNavbar
             possibleAreas={this.state.possibleAreas}
             areaSelected={this.areaSelected}
           />
-        )}
-        {this.state.college === "" ? (
-          <h1>No college selected</h1>
-        ) : (
-          <h1>{this.state.college}</h1>
-        )}
-        {this.state.area === "" ? (
-          <h1> No area selected </h1>
-        ) : (
-          <h1>{this.state.area}</h1>
         )}
         {this.state.area === "" ? (
           <p>Courses needed to be added</p>
