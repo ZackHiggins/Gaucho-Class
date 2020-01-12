@@ -9,12 +9,12 @@ import styles from "./styles";
 import { Courses } from "../../LoadingScreen/LoadData";
 import { Area } from "../Search";
 import { College } from "../Search";
+import { addCourse } from "../../App";
 
 class DisplayCourses extends React.PureComponent {
   constructor(props) {
     super(props);
     this.cellRenderer = this.cellRenderer.bind(this);
-    this.addCourse = this.addCourse.bind(this);
   }
 
   static defaultProps = {
@@ -33,7 +33,7 @@ class DisplayCourses extends React.PureComponent {
     const { columns, classes, rowHeight, onRowClick } = this.props;
     return (
       <TableCell
-        onClick={() => this.props.addCourse(this.getCourse(cellData))}
+        onClick={() => addCourse(this.getCourse(cellData))}
         component="div"
         className={clsx(classes.tableCell, classes.flexContainer, {
           [classes.noClick]: onRowClick == null

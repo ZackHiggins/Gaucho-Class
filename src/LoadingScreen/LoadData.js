@@ -13,7 +13,6 @@ class LoadData extends React.Component {
       foundError: false,
       courses: {}
     };
-    console.log("PROPS: ", props);
   }
 
   componentDidMount() {
@@ -55,7 +54,6 @@ class LoadData extends React.Component {
   }
 
   render() {
-    this.props.addCourse({});
     Courses = this.state.courses;
     return (
       <div>
@@ -63,7 +61,7 @@ class LoadData extends React.Component {
           <Loading />
         ) : (
           <p>
-            <Search allCourses={Courses} addCourse={this.props.addCourse} />
+            <Search allCourses={Courses} />
           </p>
         )}
       </div>
