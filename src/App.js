@@ -1,5 +1,5 @@
 import React from "react";
-import Search from "./SearchByDepartment/Search"
+import Search from "./SearchByDepartment/Search";
 
 class App extends React.Component {
   constructor() {
@@ -12,7 +12,9 @@ class App extends React.Component {
   }
 
   addCourse(course) {
-    this.setState({ selectedCourses: this.state.selectedCourses.concat(course) });
+    this.setState({
+      selectedCourses: this.state.selectedCourses.concat(course)
+    });
     console.log("Courses: ", this.state.selectedCourses);
   }
 

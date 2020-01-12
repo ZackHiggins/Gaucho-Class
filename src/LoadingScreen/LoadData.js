@@ -1,5 +1,6 @@
 import React from "react";
 import Loading from "./Loading";
+import Search from "../SearchByArea/Search";
 
 export let Courses;
 
@@ -20,7 +21,7 @@ class LandingPage extends React.Component {
     var params = {
       quarter: 20201,
       pageNumber: 1,
-      pageSize: 900,
+      pageSize: 100,
       includeClassSections: true
     };
 
@@ -55,7 +56,15 @@ class LandingPage extends React.Component {
     Courses = this.state.courses;
     console.log("Courses", Courses);
     return (
-      <div>{this.state.isLoading ? <Loading /> : <p>Done Loading</p>}</div>
+      <div>
+        {this.state.isLoading ? (
+          <Loading />
+        ) : (
+          <p>
+            <Search />
+          </p>
+        )}
+      </div>
     );
   }
 }
