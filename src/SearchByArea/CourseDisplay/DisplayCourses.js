@@ -10,7 +10,7 @@ import { Courses } from "../../LoadingScreen/LoadData";
 import { Area } from "../Search";
 import { College } from "../Search";
 import { addCourse } from "../../App";
-import PROF_DATA from "../../rateMyProf/PROF_DATA.txt";
+//import PROF_DATA from "../../rateMyProf/PROF_DATA.txt";
 
 class DisplayCourses extends React.PureComponent {
   constructor(props) {
