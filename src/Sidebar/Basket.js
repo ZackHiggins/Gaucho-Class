@@ -6,8 +6,10 @@ class Basket extends React.Component {
         this.state = {};
     }
 
-    SectionList = ({ sections }) => {
-        console.log(sections);
+    SectionList = ({ course }) => {
+        console.log(course);
+
+        var sections = course.classSections;
 
         return (
             <>
@@ -15,13 +17,13 @@ class Basket extends React.Component {
                     <div>
                         {section.section.endsWith("00")
                             ? <span>
-                                <p style={{ marginBottom: 5 }}>Lecture: {section.timeLocations[0].days} {section.timeLocations[0].beginTime}-{section.timeLocations[0].endTime}</p>
+                                <p style={{ marginBottom: 5 }}>Lecture: {section.timeLocations[0].days + " " + section.timeLocations[0].beginTime + "-" + section.timeLocations[0].endTime}</p>
                                 <p style={{ margin: 5 }}>Lecturer: {section.instructors[0].instructor}</p>
                                 <p style={{ margin: 5 }}>Location: {section.timeLocations[0].building} {section.timeLocations[0].room}</p>
                             </span>
 
-                            : <ul style={{ margin: 5 }}>
-                                <li>{section.timeLocations[0].days} {section.timeLocations[0].beginTime}-{section.timeLocations[0].endTime}</li>
+                            : <ul style={{ margin: 5 }} onClick={() => this.props.addCourseTime(course.courseId, section.section)}>
+                                <li>{section.timeLocations[0].days + " " + section.timeLocations[0].beginTime + "-" + section.timeLocations[0].endTime}</li>
                             </ul>
                         }
                     </div>
@@ -34,10 +36,10 @@ class Basket extends React.Component {
         return (
             <>
                 {courses.map(course => (
-                    <div key={course.code}>
-                        <hr />
+                    <div key={course.courseId}>
+                        <hr style={{ marginRight: 22 }} />
                         <p>{course.courseId}: <span style={{ textTransform: "capitalize" }}>{course.title.toLowerCase()}</span></p>
-                        <this.SectionList sections={course.classSections} />
+                        <this.SectionList course={course} />
                     </div>
                 ))}
             </>

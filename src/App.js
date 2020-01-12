@@ -7,10 +7,12 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      selectedCourses: []
+      selectedCourses: [],
+      courseTimes: {}
     };
 
     this.addCourse = this.addCourse.bind(this);
+    this.addCourseTime = this.addCourseTime.bind(this);
   }
 
   addCourse(course) {
@@ -20,14 +22,23 @@ class App extends React.Component {
     console.log("Courses: ", this.state.selectedCourses);
   }
 
+  addCourseTime(course, time) {
+    var dict = {};
+    dict[course] = time;
+    console.log(dict);
+    this.setState({ courseTimes: { ...this.state.courseTimes, ...dict } });
+    console.log("COURSETIMES: ", this.state.courseTimes);
+  }
+
   render() {
     return (
       <div>
         <Search addCourse={this.addCourse} />
-        <Sidebar courses={this.state.selectedCourses} />
-        <div style={{ position: "fixed", top: 400 }}>
-          <LoadData addCourse={this.addCourse} />
-        </div>
+        <Sidebar
+          courses={this.state.selectedCourses}
+          addCourseTime={this.addCourseTime}
+        />
+        {/* <div style={{position: "fixed", top: 400}}><LoadData /></div> */}
       </div>
     );
   }

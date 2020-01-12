@@ -12,7 +12,7 @@ class Sidebar extends React.Component {
         return (
             <div style={{ position: "fixed", right: 0, top: 100, bottom: 0, width: 300, backgroundColor: "#444444", zIndex: 1 }}>
                 <Stats courses={this.props.courses} />
-                <Basket courses={this.props.courses} />
+                <Basket courses={this.props.courses} addCourseTime={this.props.addCourseTime} />
             </div>
         );
     }
