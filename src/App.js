@@ -26,7 +26,6 @@ class App extends React.Component {
         <Search addCourse={this.addCourse} />
         <Sidebar courses={this.state.selectedCourses} />
         {/* <div style={{position: "fixed", top: 400}}><LoadData /></div> */}
-
       </div>
     );
   }
