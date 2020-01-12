@@ -21,7 +21,7 @@ class LandingPage extends React.Component {
     var params = {
       quarter: 20201,
       pageNumber: 1,
-      pageSize: 100,
+      pageSize: 1000,
       includeClassSections: true
     };
 

@@ -129,16 +129,16 @@ DisplayCourses.propTypes = {
 
 const VirtualizedTable = withStyles(styles)(DisplayCourses);
 
-// -----
+// -----------
 
-const sample = [];
+// ------------
 
 function createData(id, courseId, instructor, location, day, time) {
   // rateMyProfessor(instructor)
   return { id, courseId, instructor, location, day, time };
 }
 
-const rows = [];
+let rows = [];
 
 function getInstructor(obj) {
   let instructor = "CONT";
@@ -168,13 +168,24 @@ function getLocation(obj) {
 }
 
 function filter(generalEducation, areaSelected, collegeSelected) {
+  if (generalEducation.length === 0) {
+    return false;
+  }
   for (let i = 0; i < generalEducation.length; i++) {
     const item = generalEducation[i];
-    if (
-      item.geCode.trim() === areaSelected &&
-      item.geCollege.trim() === collegeSelected
-    ) {
-      return true;
+
+    let geCode = "";
+    let geCollege = "";
+
+    if (item.geCode && item.geCollege) {
+      geCollege = item.geCollege.trim();
+      geCode = item.geCode.trim();
+
+      if (geCode === areaSelected && geCollege === collegeSelected) {
+        console.log(geCode + " " + areaSelected);
+        console.log(geCollege + " " + collegeSelected);
+        return true;
+      }
     }
   }
   return false;
@@ -184,12 +195,11 @@ export default function ReactVirtualizedTable() {
   let AllCourses = Courses;
   let collegeSelected = College;
   let areaSelected = Area;
-  console.log("AreaSelected", areaSelected);
-  console.log("collegeSelected", collegeSelected);
+  rows = [];
   for (let i = 0; i < AllCourses.length; i += 1) {
     const obj = AllCourses[i];
 
-    if (!filter(obj.generalEducation, collegeSelected, areaSelected)) {
+    if (!filter(obj.generalEducation, areaSelected, collegeSelected)) {
       continue;
     }
 
