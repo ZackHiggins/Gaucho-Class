@@ -1,4 +1,5 @@
 import React from "react";
+import ProfData from "../rateMyProf/ProfData";
 
 class Basket extends React.Component {
     constructor(props) {
@@ -18,7 +19,7 @@ class Basket extends React.Component {
                         {section.section.endsWith("00")
                             ? <span>
                                 <p style={{ marginBottom: 5 }}>Lecture: {section.timeLocations[0].days + " " + section.timeLocations[0].beginTime + "-" + section.timeLocations[0].endTime}</p>
-                                <p style={{ margin: 5 }}>Lecturer: {section.instructors[0].instructor}</p>
+                                <p style={{ margin: 5 }}>Lecturer: {section.instructors[0] && section.instructors[0].instructor} <ProfData name={section.instructors[0].instructor} /></p>
                                 <p style={{ margin: 5 }}>Location: {section.timeLocations[0].building} {section.timeLocations[0].room}</p>
                             </span>
 
