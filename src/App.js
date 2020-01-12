@@ -25,10 +25,13 @@ class App extends React.Component {
       <div>
         <Search addCourse={this.addCourse} />
         <Sidebar courses={this.state.selectedCourses} />
-        {/* <div style={{position: "fixed", top: 400}}><LoadData /></div> */}
+        <div style={{ position: "fixed", top: 400 }}>
+          <LoadData addCourse={this.addCourse} />
+        </div>
       </div>
     );
   }
 }
 
 export default App;
+export const { addCourse } = new App();

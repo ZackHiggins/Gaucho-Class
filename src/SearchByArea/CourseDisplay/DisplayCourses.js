@@ -11,6 +11,12 @@ import { Area } from "../Search";
 import { College } from "../Search";
 
 class DisplayCourses extends React.PureComponent {
+  constructor(props) {
+    super(props);
+    this.cellRenderer = this.cellRenderer.bind(this);
+    this.addCourse = this.addCourse.bind(this);
+  }
+
   static defaultProps = {
     headerHeight: 48,
     rowHeight: 48
@@ -18,7 +24,6 @@ class DisplayCourses extends React.PureComponent {
 
   getRowClassName = ({ index }) => {
     const { classes, onRowClick } = this.props;
-
     return clsx(classes.tableRow, classes.flexContainer, {
       [classes.tableRowHover]: index !== -1 && onRowClick != null
     });
@@ -28,6 +33,7 @@ class DisplayCourses extends React.PureComponent {
     const { columns, classes, rowHeight, onRowClick } = this.props;
     return (
       <TableCell
+        onClick={() => this.props.addCourse(this.getCourse(cellData))}
         component="div"
         className={clsx(classes.tableCell, classes.flexContainer, {
           [classes.noClick]: onRowClick == null
@@ -45,8 +51,17 @@ class DisplayCourses extends React.PureComponent {
     );
   };
 
+  getCourse(id) {
+    for (let i = 0; i < Courses.length; i++) {
+      if (Courses[i].courseId === id) {
+        return Courses[i];
+      }
+    }
+    return null;
+  }
+
   headerRenderer = ({ label, columnIndex }) => {
-    const { headerHeight, columns, classes } = this.props;
+    const { headerHeight, columns, classes, addCourse } = this.props;
 
     return (
       <TableCell
@@ -171,6 +186,9 @@ function filter(generalEducation, areaSelected, collegeSelected) {
   if (generalEducation.length === 0) {
     return false;
   }
+  if (collegeSelected === "LNS") {
+    collegeSelected = "L&S";
+  }
   for (let i = 0; i < generalEducation.length; i++) {
     const item = generalEducation[i];
 
@@ -182,8 +200,6 @@ function filter(generalEducation, areaSelected, collegeSelected) {
       geCode = item.geCode.trim();
 
       if (geCode === areaSelected && geCollege === collegeSelected) {
-        console.log(geCode + " " + areaSelected);
-        console.log(geCollege + " " + collegeSelected);
         return true;
       }
     }
@@ -202,8 +218,6 @@ export default function ReactVirtualizedTable() {
     if (!filter(obj.generalEducation, areaSelected, collegeSelected)) {
       continue;
     }
-
-    console.log(obj);
 
     let instructor = getInstructor(obj);
     if (instructor === "CONT") {
