@@ -1,4 +1,5 @@
 import React from "react";
+import ReactDOM from "react-dom";
 import Search from "./SearchByDepartment/Search";
 import LoadData from "./LoadingScreen/LoadData";
 import Sidebar from "./Sidebar/Sidebar";
@@ -16,13 +17,14 @@ class App extends React.Component {
   }
 
   addCourse(course) {
-    console.log("hello!", course);
+    console.log("course to add!: ", course);
     this.setState(prevState => {
       return {
-        selectedCourses: prevState.selectedCourses.concat(course)
+        selectedCourses: prevState.selectedCourses.push(course),
+        courseTimes: {}
       };
     });
-    console.log("Courses: ", this.state.selectedCourses);
+    console.log("CoursesArray:", this.state.selectedCourses);
   }
 
   addCourseTime(course, time) {
@@ -41,8 +43,15 @@ class App extends React.Component {
           courses={this.state.selectedCourses}
           addCourseTime={this.addCourseTime}
         />
-        <div style={{ position: "fixed", top: 200 }}>
-          <LoadData />
+        <div style={{ position: "absolute", top: 10, right: 10 }}>
+          <button
+            onClick={() =>
+              ReactDOM.render(<LoadData />, document.getElementById("root"))
+            }
+          >
+            {" "}
+            Ge finder
+          </button>
         </div>
       </div>
     );

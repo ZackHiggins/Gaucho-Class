@@ -61,7 +61,7 @@ class DisplayCourses extends React.PureComponent {
   }
 
   headerRenderer = ({ label, columnIndex }) => {
-    const { headerHeight, columns, classes, addCourse } = this.props;
+    const { headerHeight, columns, classes } = this.props;
 
     return (
       <TableCell
