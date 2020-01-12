@@ -1,5 +1,7 @@
 import React from "react";
 import Search from "./SearchByDepartment/Search";
+import LoadData from "./LoadingScreen/LoadData";
+
 
 class App extends React.Component {
   constructor() {
@@ -22,6 +24,8 @@ class App extends React.Component {
     return (
       <div>
         <Search addCourse={this.addCourse} />
+        <div style={{position: "fixed", top: 400}}><LoadData /></div>
+        
       </div>
     );
   }
