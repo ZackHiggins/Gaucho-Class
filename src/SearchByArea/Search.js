@@ -1,7 +1,10 @@
 import React from "react";
+import ReactDOM from "react-dom";
+
 import CollegesNavBar from "./Dropdowns/CollegesNavbar";
 import AreasNavbar from "./Dropdowns/AreasNavbar";
 import DisplayCourses from "./CourseDisplay/DisplayCourses";
+import App from "../App";
 
 let dictOfAreas = {
   ENGR: ["A", "D", "E", "F", "G", "E", "EUR", "NWC", "WRT", "AMH", "ETH"],
@@ -63,11 +66,16 @@ class Search extends React.Component {
             areaSelected={this.areaSelected}
           />
         )}
-        {this.state.area === "" ? (
-          <p>Courses needed to be added</p>
-        ) : (
-          <DisplayCourses addCourse={this.props.addCourse} />
-        )}
+        {this.state.area === "" ? <p>Select a College</p> : <DisplayCourses />}
+        <button
+          onClick={() =>
+            ReactDOM.render(<App />, document.getElementById("root"))
+          }
+          className="btn"
+          style={{ position: "absolute", right: 0, top: 0 }}
+        >
+          Back
+        </button>
       </div>
     );
   }

@@ -1,5 +1,6 @@
 import React from "react";
 import AreaDropdownComponent from "./AreaDropdownComponents";
+import "../../style.css";
 
 function AreasNavbar(props) {
   let areaComponents = props.possibleAreas.map(a => {

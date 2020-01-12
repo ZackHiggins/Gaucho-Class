@@ -10,6 +10,7 @@ import { Courses } from "../../LoadingScreen/LoadData";
 import { Area } from "../Search";
 import { College } from "../Search";
 import { addCourse } from "../../App";
+import PROF_DATA from "../../rateMyProf/PROF_DATA.txt";
 
 class DisplayCourses extends React.PureComponent {
   constructor(props) {
@@ -148,9 +149,21 @@ const VirtualizedTable = withStyles(styles)(DisplayCourses);
 
 // ------------
 
-function createData(id, courseId, instructor, location, day, time) {
-  // rateMyProfessor(instructor)
-  return { id, courseId, instructor, location, day, time };
+let ratings = {};
+
+// function parseRateMyProfRating() {
+//   var fs = require("fs");
+//   var textByLine = fs
+//     .readFileSync(PROF_DATA)
+//     .toString()
+//     .split("\n");
+// }
+
+function createData(id, courseId, instructor, location, day, time, rating) {
+  //parseRateMyProfRating();
+  rating = 5 * Math.random();
+  rating = Math.round(rating * 10) / 10;
+  return { id, courseId, instructor, location, day, time, rating };
 }
 
 let rows = [];
@@ -246,7 +259,7 @@ export default function ReactVirtualizedTable() {
     );
   }
   return (
-    <Paper style={{ height: 400, width: "100%" }}>
+    <Paper style={{ height: 700, width: "100%" }}>
       <VirtualizedTable
         rowCount={rows.length}
         rowGetter={({ index }) => rows[index]}
@@ -283,7 +296,7 @@ export default function ReactVirtualizedTable() {
           {
             width: 300,
             label: "Rate My professor",
-            dataKey: "ratemyprofessor",
+            dataKey: "rating",
             numeric: true
           }
         ]}

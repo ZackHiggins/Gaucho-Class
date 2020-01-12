@@ -21,7 +21,7 @@ class LoadData extends React.Component {
     var params = {
       quarter: 20201,
       pageNumber: 1,
-      pageSize: 100,
+      pageSize: 1200,
       includeClassSections: true
     };
 
@@ -54,7 +54,6 @@ class LoadData extends React.Component {
 
   render() {
     Courses = this.state.courses;
-    console.log(Courses);
     return (
       <div>
         {this.state.isLoading ? (
